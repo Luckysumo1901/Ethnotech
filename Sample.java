@@ -9,5 +9,6 @@ public class Sample {
             a.add(ar);
         }
         System.out.print(a);
+        sc.close();
     }
 }

@@ -12,5 +12,6 @@ public class LinkedDemo {
         l.remove(1);
         System.out.println(l);
         System.out.println(l.contains("alice"));
+        sc.close();
     }     
 }
