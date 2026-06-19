@@ -1,0 +1,28 @@
+CREATE DATABASE Bank;
+USE Bank;
+CREATE TABLE Customer (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    account_no BIGINT UNIQUE,
+    transaction_date DATE,
+    amount DECIMAL(10,2)
+);
+INSERT INTO Customer
+VALUES
+(1,'Teja',1234567890,'2026-06-15',2500),
+(2,'Ravi',1234567891,'2026-06-15',5000),
+(3,'Sita',1234567892,'2026-06-16',4000),
+(4,'Teja',1234567899,'2026-06-16',2500),
+(5,'Anu',1234567893,'2026-06-17',7000),
+(6,'Ravi',1234567894,'2026-06-17',5000);
+SELECT * 
+FROM Customer
+WHERE amount > 3000;
+SELECT transaction_date, AVG(amount) AS avg_amount
+FROM Customer
+GROUP BY transaction_date;
+SELECT SUM(amount) AS total_amount FROM Customer;
+SELECT amount, COUNT(*) AS frequency
+FROM Customer
+GROUP BY amount
+HAVING COUNT(*) > 1;
