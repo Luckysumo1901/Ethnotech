@@ -1,0 +1,132 @@
+use class_db;
+create table accounts (ac_id int primary key,cust_name varchar(20),balance int);
+insert into accounts values
+(1,"sai",500),
+(2,"mary",240),
+(3,"sam",900),
+(4,"siya",1000),
+(5,"selci",1500);
+create view accounts_names as select cust_name,balance from accounts;
+drop view accounts_names;
+
+select * from accounts_names where balance >=600 order by balance;
+
+alter table accounts add id int, add constraint foreign key (id) references customer(c_id);
+update accounts set id=101 where ac_id=1;
+update accounts set id=103 where ac_id=2;
+update accounts set id=104 where ac_id=3;
+update accounts set id=105 where ac_id=4;
+update accounts set id=102 where ac_id=5;
+
+select customer.name,customer.amount from customer inner join accounts on accounts.id=customer.c_id;
+select accounts.cust_name,accounts.balance from accounts inner join customer on accounts.id=customer.c_id;
+select accounts.cust_name,accounts.balance from accounts left join customer on accounts.id=customer.c_id;
+select accounts.cust_name,accounts.balance from accounts right join customer on accounts.id=customer.c_id;
+
+create view ac_names as select accounts.cust_name,customer.amount from accounts left join customer on accounts.cust_name=customer.name;
+select * from ac_names;
+drop procedure get_name;
+delimiter //
+
+create procedure get_name(
+    in cus_name varchar(30),
+    in bal decimal(10,2)
+)
+begin
+    select *
+    from accounts
+    where cust_name=cus_name
+	and balance = bal;
+end //
+
+delimiter ;
+
+call get_name("siya",1000.00);
+
+delimiter //
+create procedure get_acc1()
+begin
+select * from accounts;
+end //
+delimiter ;
+
+call get_acc1();
+
+delimiter //
+
+create procedure get_acc2(in cust_name varchar(20))
+begin
+select * from accounts
+where cust_name=cust_name;
+end //
+delimiter ;
+
+call get_acc("sam");
+
+create table employee (e_id int primary key auto_increment,e_name varchar(20),salary int);
+insert into employee value
+(1,"sai",10000),
+(2,"sam",50000),
+(3,"sana",20000);
+
+create table employee_msg(
+message varchar(100)
+);
+
+delimiter //
+create trigger employee_insert_trigger
+after insert 
+on employee
+for each row
+begin
+insert into employee_msg(message)
+	values(
+		concat('Employee Added: ',new.e_name)
+	);
+end //
+delimiter ;
+
+insert into employee(e_name,salary)
+values("Rahul",30000);
+
+select * from employee_msg;
+
+delimiter //
+create trigger emp_after_update
+after update
+on employee
+for each row
+begin
+insert into employee_msg(message)
+	values(
+		concat(
+			new.e_name,'salary changed from ',
+            old.salary,'to',
+            new.salary
+        )
+	);
+end //
+delimiter ;
+
+update employee set salary=50000 where e_id=1;
+
+select * from employee_msg;
+
+delimiter //
+create trigger emp_after_delete
+after delete
+on employee
+for each row
+begin
+insert into employee_msg(message)
+	values(
+		concat(
+			'deleted employee id ',old.e_id
+        )
+	);
+end //
+delimiter ;
+
+delete from employee where e_id=1;
+
+select * from employee_msg;
