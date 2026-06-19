@@ -1,0 +1,908 @@
+Data:
+Data is stored in structured type and it consists of rows and columns
+
+Database:
+It is used to store a collection of data which can be both structured and unstructured each database has one or more distinct api's for creating , accessing , managing, searching
+
+Relations:
+Relations are established among these tables using primary keys are other keys known as foreign keys
+
+RDBMS:
+RDBMS is a software it enables you to implement a database with tables columns and indexes
+Update the indexes automatically and combines information from various tables
+
+Table:
+It is matrix with data
+
+Column:
+These are data element contains one at the same kind
+
+Row:
+A row is a group of related data(Entry)
+
+Redundancy:
+Storing data twice
+
+Primary key:
+Primary key is a unique , a key value cannot occur twice in one table
+
+Foreign key:
+Foreign key is a link between two tables
+
+Compound key:
+It is a key that consist of multiple columns
+
+Index:
+An index in a database resembles and index at the back of the book
+
+Referential integrity:
+Make sure that foreign key value always existing towards row
+
+Variables:
+These are the containers used to store information in a program.
+The value of a variable can be changed as many times as required.
+
+Types:
+1.User define (@)
+2.Local :
+	1.Declare(int a, int b)
+	2.null
+3.System:
+	1.set
+	2.show
+	3.use
+
+Sub languages:
+
+DDL:
+Create
+Drop
+Alter
+Truncate
+
+DML:
+Insert
+Update
+Delete
+
+TCL:
+Save point
+Commit
+Rollback
+
+DCL:
+Grant
+Revoke
+
+DQL:
+select
+
+
+Timestamp:
+It is a data type used to store data and time values.
+
+
+
+Delete:
+It is used to delete a row.
+
+Drop:
+It is used to drop a column or database.
+
+
+Datatypes:
+INT, BIGINT, TINYINT
+DECIMAL(10,2)
+FLOAT, DOUBLE
+VARCHAR
+CHAR
+TIMESTAMP
+DATETIME
+DATE
+TIME
+YEAR
+BOOLEAN
+TEXT:
+	1.TINYTEXT-255 CHARACTERS
+	2.TEXT
+	3.MEDIUM TEXT
+	4.LONG TEXT
+
+create table std (id int auto_increment primary key, name varchar(10) not null, email varchar(50) unique not null, age int, city varchar(10), score decimal(5,2) default 0.00, enroll date, is_active boolean default true, created_at timestamp default current_timestamp);
+
+mysql> insert into student (id,name,email,age,city,score,enroll,is_active,created_at) values (1,'varsha','varshi@gmail.com',19,'dmm',98.9,'2023-09-27',true,'2023-09-27')
+
+
+mysql> insert into student (id,name,email,age,city,score,enroll,is_active,created_at) values (2,'vara','vara@gmail.com',20,'dhone',90.9,'2023-10-27',true,'2023-10-27'),(3,'tejj','tej@gmail.com',21,'punganur',89.76,'2023-06-23',true,'2023-06-23'),(4,'varshini','varshini@gmail.com',22,'ctm',96.87,'2023-07-12',true,'2023-07-12');
+Query OK, 3 rows affected (0.07 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++----+----------+--------------------+------+----------+-------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+-------+------------+-----------+---------------------+
+|  1 | varsha   | varshi@gmail.com   |   19 | dmm      | 98.90 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
+|  2 | vara     | vara@gmail.com     |   20 | dhone    | 90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur | 89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      | 96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
++----+----------+--------------------+------+----------+-------+------------+-----------+---------------------+
+
+
+mysql> select id, name, age from student;
++----+----------+------+
+| id | name     | age  |
++----+----------+------+
+|  1 | varsha   |   19 |
+|  2 | vara     |   20 |
+|  3 | tejj     |   21 |
+|  4 | varshini |   22 |
++----+----------+------+
+
+
+mysql> select distinct city from student;
++----------+
+| city     |
++----------+
+| dmm      |
+| dhone    |
+| punganur |
+| ctm      |
++----------+
+
+
+mysql> select * from student limit 1;
++----+--------+------------------+------+------+-------+------------+-----------+---------------------+
+| id | name   | email            | age  | city | score | enroll     | is_active | created_at          |
++----+--------+------------------+------+------+-------+------------+-----------+---------------------+
+|  1 | varsha | varshi@gmail.com |   19 | dmm  | 98.90 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
++----+--------+------------------+------+------+-------+------------+-----------+---------------------+
+
+
+mysql> update student set score=100 where id=1;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score  | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+|  1 | varsha   | varshi@gmail.com   |   19 | dmm      | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
+|  2 | vara     | vara@gmail.com     |   20 | dhone    |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur |  89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      |  96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+
+
+mysql> select * from student where age>20;
++----+----------+--------------------+------+----------+-------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+-------+------------+-----------+---------------------+
+|  3 | tejj     | tej@gmail.com      |   21 | punganur | 89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      | 96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
++----+----------+--------------------+------+----------+-------+------------+-----------+---------------------+
+
+
+
+mysql> select * from student where age>=20;
++----+----------+--------------------+------+----------+-------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+-------+------------+-----------+---------------------+
+|  2 | vara     | vara@gmail.com     |   20 | dhone    | 90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur | 89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      | 96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
++----+----------+--------------------+------+----------+-------+------------+-----------+---------------------+
+
+
+mysql> insert into student (id,name,email,age,city,score,enroll,is_active,created_at) values (5,'likki','likki@gmail.com',22,'hyd',91.9,'2023-11-27',false,'2023-11-27'),(6,'pandu','siri@gmail.com',17,'banglore',87.79,'2023-03-09',true,'2023-03-09'),(7,'pradhi','pradhi2@gmail.com',12,'chennai',94.5,'2024-09-23',false,'2024-09-23');
+Query OK, 3 rows affected (0.06 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score  | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+|  1 | varsha   | varshi@gmail.com   |   19 | dmm      | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
+|  2 | vara     | vara@gmail.com     |   20 | dhone    |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur |  89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      |  96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
+|  5 | likki    | likki@gmail.com    |   22 | hyd      |  91.90 | 2023-11-27 |         0 | 2023-11-27 00:00:00 |
+|  6 | pandu    | siri@gmail.com     |   17 | banglore |  87.79 | 2023-03-09 |         1 | 2023-03-09 00:00:00 |
+|  7 | pradhi   | pradhi2@gmail.com  |   12 | chennai  |  94.50 | 2024-09-23 |         0 | 2024-09-23 00:00:00 |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+7 rows in set (0.03 sec)
+
+mysql> select * from student where city='banglore';
++----+-------+----------------+------+----------+-------+------------+-----------+---------------------+
+| id | name  | email          | age  | city     | score | enroll     | is_active | created_at          |
++----+-------+----------------+------+----------+-------+------------+-----------+---------------------+
+|  6 | pandu | siri@gmail.com |   17 | banglore | 87.79 | 2023-03-09 |         1 | 2023-03-09 00:00:00 |
++----+-------+----------------+------+----------+-------+------------+-----------+---------------------+
+1 row in set (0.06 sec)
+
+mysql> select * from student where age>18 and score>87;
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score  | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+|  1 | varsha   | varshi@gmail.com   |   19 | dmm      | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
+|  2 | vara     | vara@gmail.com     |   20 | dhone    |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur |  89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      |  96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
+|  5 | likki    | likki@gmail.com    |   22 | hyd      |  91.90 | 2023-11-27 |         0 | 2023-11-27 00:00:00 |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+5 rows in set (0.03 sec)
+
+mysql> select * from student where age>18 or score>87;
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score  | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+|  1 | varsha   | varshi@gmail.com   |   19 | dmm      | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
+|  2 | vara     | vara@gmail.com     |   20 | dhone    |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur |  89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      |  96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
+|  5 | likki    | likki@gmail.com    |   22 | hyd      |  91.90 | 2023-11-27 |         0 | 2023-11-27 00:00:00 |
+|  6 | pandu    | siri@gmail.com     |   17 | banglore |  87.79 | 2023-03-09 |         1 | 2023-03-09 00:00:00 |
+|  7 | pradhi   | pradhi2@gmail.com  |   12 | chennai  |  94.50 | 2024-09-23 |         0 | 2024-09-23 00:00:00 |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+7 rows in set (0.03 sec)
+
+mysql> select * from student where score!=87;
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score  | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+|  1 | varsha   | varshi@gmail.com   |   19 | dmm      | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
+|  2 | vara     | vara@gmail.com     |   20 | dhone    |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur |  89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      |  96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
+|  5 | likki    | likki@gmail.com    |   22 | hyd      |  91.90 | 2023-11-27 |         0 | 2023-11-27 00:00:00 |
+|  6 | pandu    | siri@gmail.com     |   17 | banglore |  87.79 | 2023-03-09 |         1 | 2023-03-09 00:00:00 |
+|  7 | pradhi   | pradhi2@gmail.com  |   12 | chennai  |  94.50 | 2024-09-23 |         0 | 2024-09-23 00:00:00 |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from student where city in ('dmm','dhone');
++----+--------+------------------+------+-------+--------+------------+-----------+---------------------+
+| id | name   | email            | age  | city  | score  | enroll     | is_active | created_at          |
++----+--------+------------------+------+-------+--------+------------+-----------+---------------------+
+|  1 | varsha | varshi@gmail.com |   19 | dmm   | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
+|  2 | vara   | vara@gmail.com   |   20 | dhone |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
++----+--------+------------------+------+-------+--------+------------+-----------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where name like 'varsha';
++----+--------+------------------+------+------+--------+------------+-----------+---------------------+
+| id | name   | email            | age  | city | score  | enroll     | is_active | created_at          |
++----+--------+------------------+------+------+--------+------------+-----------+---------------------+
+|  1 | varsha | varshi@gmail.com |   19 | dmm  | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
++----+--------+------------------+------+------+--------+------------+-----------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where age is not null;
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score  | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+|  1 | varsha   | varshi@gmail.com   |   19 | dmm      | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
+|  2 | vara     | vara@gmail.com     |   20 | dhone    |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur |  89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      |  96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
+|  5 | likki    | likki@gmail.com    |   22 | hyd      |  91.90 | 2023-11-27 |         0 | 2023-11-27 00:00:00 |
+|  6 | pandu    | siri@gmail.com     |   17 | banglore |  87.79 | 2023-03-09 |         1 | 2023-03-09 00:00:00 |
+|  7 | pradhi   | pradhi2@gmail.com  |   12 | chennai  |  94.50 | 2024-09-23 |         0 | 2024-09-23 00:00:00 |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+
+mysql> select * from student order by score;
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score  | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+|  6 | pandu    | siri@gmail.com     |   17 | banglore |  87.79 | 2023-03-09 |         1 | 2023-03-09 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur |  89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  2 | vara     | vara@gmail.com     |   20 | dhone    |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  5 | likki    | likki@gmail.com    |   22 | hyd      |  91.90 | 2023-11-27 |         0 | 2023-11-27 00:00:00 |
+|  7 | pradhi   | pradhi2@gmail.com  |   12 | chennai  |  94.50 | 2024-09-23 |         0 | 2024-09-23 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      |  96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
+|  1 | varsha   | varshi@gmail.com   |   19 | dmm      | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+
+mysql> select * from student order by score desc;
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score  | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+|  1 | varsha   | varshi@gmail.com   |   19 | dmm      | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      |  96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
+|  7 | pradhi   | pradhi2@gmail.com  |   12 | chennai  |  94.50 | 2024-09-23 |         0 | 2024-09-23 00:00:00 |
+|  5 | likki    | likki@gmail.com    |   22 | hyd      |  91.90 | 2023-11-27 |         0 | 2023-11-27 00:00:00 |
+|  2 | vara     | vara@gmail.com     |   20 | dhone    |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur |  89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  6 | pandu    | siri@gmail.com     |   17 | banglore |  87.79 | 2023-03-09 |         1 | 2023-03-09 00:00:00 |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+
+mysql> select * from student order by score desc, age asc;
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+| id | name     | email              | age  | city     | score  | enroll     | is_active | created_at          |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+|  1 | varsha   | varshi@gmail.com   |   19 | dmm      | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
+|  4 | varshini | varshini@gmail.com |   22 | ctm      |  96.87 | 2023-07-12 |         1 | 2023-07-12 00:00:00 |
+|  7 | pradhi   | pradhi2@gmail.com  |   12 | chennai  |  94.50 | 2024-09-23 |         0 | 2024-09-23 00:00:00 |
+|  5 | likki    | likki@gmail.com    |   22 | hyd      |  91.90 | 2023-11-27 |         0 | 2023-11-27 00:00:00 |
+|  2 | vara     | vara@gmail.com     |   20 | dhone    |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  3 | tejj     | tej@gmail.com      |   21 | punganur |  89.76 | 2023-06-23 |         1 | 2023-06-23 00:00:00 |
+|  6 | pandu    | siri@gmail.com     |   17 | banglore |  87.79 | 2023-03-09 |         1 | 2023-03-09 00:00:00 |
++----+----------+--------------------+------+----------+--------+------------+-----------+---------------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from student where name in('varsha','vara') order by score;
++----+--------+------------------+------+-------+--------+------------+-----------+---------------------+
+| id | name   | email            | age  | city  | score  | enroll     | is_active | created_at          |
++----+--------+------------------+------+-------+--------+------------+-----------+---------------------+
+|  2 | vara   | vara@gmail.com   |   20 | dhone |  90.90 | 2023-10-27 |         1 | 2023-10-27 00:00:00 |
+|  1 | varsha | varshi@gmail.com |   19 | dmm   | 100.00 | 2023-09-27 |         1 | 2023-09-27 00:00:00 |
++----+--------+------------------+------+-------+--------+------------+-----------+---------------------+
+
+
+Assignment operator in sql:
+set @a:=30
+@=It denotes variable
+:=It is used to assign a value. In this a assign with 30.
+
+
+Built-in function:
+1.Numeric function: Rounding, Ceiling or Floor and Math operations
+2.String function: It is used constantly for formatting and cleaning text data
+3.Datatype function: Working with enrollment, dates times and timestamps
+4.If / Conditional functions: Will conditional columns directly in your select statement
+
+
+mysql> select length(name) from student;
++--------------+
+| length(name) |
++--------------+
+|            6 |
+|            4 |
+|            4 |
+|            8 |
+|            5 |
+|            5 |
+|            6 |
++--------------+
+
+mysql> select Upper(name) AS uppername from student;
++-----------+
+| uppername |
++-----------+
+| VARSHA    |
+| VARA      |
+| TEJJ      |
+| VARSHINI  |
+| LIKKI     |
+| PANDU     |
+| PRADHI    |
++-----------+
+7 rows in set (0.06 sec)
+
+mysql> select Lower(name) AS uppername from student;
++-----------+
+| uppername |
++-----------+
+| varsha    |
+| vara      |
+| tejj      |
+| varshini  |
+| likki     |
+| pandu     |
+| pradhi    |
++-----------+
+7 rows in set (0.03 sec)
+
+mysql> select name,Upper(name),Lower(name) AS uppername from student;
++----------+-------------+-----------+
+| name     | Upper(name) | uppername |
++----------+-------------+-----------+
+| varsha   | VARSHA      | varsha    |
+| vara     | VARA        | vara      |
+| tejj     | TEJJ        | tejj      |
+| varshini | VARSHINI    | varshini  |
+| likki    | LIKKI       | likki     |
+| pandu    | PANDU       | pandu     |
+| pradhi   | PRADHI      | pradhi    |
++----------+-------------+-----------+
+
+mysql> select concat(name,' Lives in ',city) AS details from student;
++-------------------------+
+| details                 |
++-------------------------+
+| varsha Lives in dmm     |
+| vara Lives in dhone     |
+| tejj Lives in punganur  |
+| varshini Lives in ctm   |
+| likki Lives in hyd      |
+| pandu Lives in banglore |
+| pradhi Lives in chennai |
++-------------------------+
+7 rows in set (0.00 sec)
+
+mysql> select name,substring(name,1,3) As shortname from student;
++----------+-----------+
+| name     | shortname |
++----------+-----------+
+| varsha   | var       |
+| vara     | var       |
+| tejj     | tej       |
+| varshini | var       |
+| likki    | lik       |
+| pandu    | pan       |
+| pradhi   | pra       |
++----------+-----------+
+
+mysql> select name, trim (name) as cleanname from students;
++--------+-----------+
+| name   | cleanname |
++--------+-----------+
+| varsha | varsha    |
+| vara   | vara      |
+| tejj   | tejj      |
+| likki  | likki     |
++--------+-----------+
+For this initially my data does not contain any leading or trailing spaces so that name and cleanname are same.
+
+mysql> select round(score) from student;
++--------------+
+| round(score) |
++--------------+
+|          100 |
+|           91 |
+|           90 |
+|           97 |
+|           92 |
+|           88 |
+|           95 |
++--------------+
+It gives score without decimals if it is 89.7 it becomes 90.
+ceil also same , floor gives values without decimals.
+
+mysql> select score, round(score),ceil(score),floor(score) from student;
++--------+--------------+-------------+--------------+
+| score  | round(score) | ceil(score) | floor(score) |
++--------+--------------+-------------+--------------+
+| 100.00 |          100 |         100 |          100 |
+|  90.90 |           91 |          91 |           90 |
+|  89.76 |           90 |          90 |           89 |
+|  96.87 |           97 |          97 |           96 |
+|  91.90 |           92 |          92 |           91 |
+|  87.79 |           88 |          88 |           87 |
+|  94.50 |           95 |          95 |           94 |
++--------+--------------+-------------+--------------+
+
+
+mysql> select power(2,5);
++------------+
+| power(2,5) |
++------------+
+|         32 |
++------------+
+1 row in set (0.03 sec)
+
+mysql> select abs(-8);
++---------+
+| abs(-8) |
++---------+
+|       8 |
++---------+
+1 row in set (0.06 sec)
+
+mysql> select mod(2,8);
++----------+
+| mod(2,8) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select rand();
++--------------------+
+| rand()             |
++--------------------+
+| 0.7673526245796611 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select truncate(85.45689,2);
++----------------------+
+| truncate(85.45689,2) |
++----------------------+
+|                85.45 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select curdate(),curtime();
++------------+-----------+
+| curdate()  | curtime() |
++------------+-----------+
+| 2026-06-16 | 16:34:52  |
++------------+-----------+
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2026-06-16 16:35:25 |
++---------------------+
+
+mysql> select date(enroll) from student;
++--------------+
+| date(enroll) |
++--------------+
+| 2023-09-27   |
+| 2023-10-27   |
+| 2023-06-23   |
+| 2023-07-12   |
+| 2023-11-27   |
+| 2023-03-09   |
+| 2024-09-23   |
++--------------+
+
+
+mysql> select datediff(now(),enroll) as days_since from student;
++------------+
+| days_since |
++------------+
+|        993 |
+|        963 |
+|       1089 |
+|       1070 |
+|        932 |
+|       1195 |
+|        631 |
++------------+
+
+mysql> select date_format(enroll,'%d %m %y') from student;
++--------------------------------+
+| date_format(enroll,'%d %m %y') |
++--------------------------------+
+| 27 09 23                       |
+| 27 10 23                       |
+| 23 06 23                       |
+| 12 07 23                       |
+| 27 11 23                       |
+| 09 03 23                       |
+| 23 09 24                       |
++--------------------------------+
+
+mysql> select city,count(*) from student group by city;
++----------+----------+
+| city     | count(*) |
++----------+----------+
+| dmm      |        1 |
+| dhone    |        1 |
+| punganur |        1 |
+| ctm      |        1 |
+| hyd      |        1 |
+| banglore |        1 |
+| chennai  |        1 |
++----------+----------+
+
+mysql> select avg(score) as Average_score from student;
++---------------+
+| Average_score |
++---------------+
+|     93.102857 |
++---------------+
+1 row in set (0.02 sec)
+
+mysql> select round(avg(score),2) as Average_score from student;
++---------------+
+| Average_score |
++---------------+
+|         93.10 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select round(avg(score),2) as Average_score from student group by score;
++---------------+
+| Average_score |
++---------------+
+|        100.00 |
+|         90.90 |
+|         89.76 |
+|         96.87 |
+|         91.90 |
+|         87.79 |
+|         94.50 |
++---------------+
+
+mysql> select score,round(avg(score),2) as Average_score from student group by score;
++--------+---------------+
+| score  | Average_score |
++--------+---------------+
+| 100.00 |        100.00 |
+|  90.90 |         90.90 |
+|  89.76 |         89.76 |
+|  96.87 |         96.87 |
+|  91.90 |         91.90 |
+|  87.79 |         87.79 |
+|  94.50 |         94.50 |
++--------+---------------+
+
+
+Constraints:
+1.Primary key
+2.Foreign key
+3.Unique
+4.Check
+5.Default
+6.Not null
+7.auto_increment (this is not a key this a column attribute)
+
+
+Sub query:
+It is query inside the another query it executes first and its result is used by the outer query.
+
+
+
+
+-- Create database
+create database mits;
+
+-- Select database
+use mits;
+
+-- Create student table
+create table student(hno int, sname varchar(10), eng int, maths int, telugu int, science int, social int);
+
+-- Insert records
+insert into student values(101,'varsha',98,97,96,89,86);
+insert into student values(102,'vara',96,99,94,80,76);
+insert into student values(103,'tejj',89,86,96,89,86);
+insert into student values(104,'likki',90,97,96,87,86);
+insert into student values(105,'pandu',98,92,96,89,76);
+
+-- Display all records
+select*from student;
+
+-- Calculate total marks
+select *,eng+maths+telugu+science+social total from student;
+
+-- Calculate total and average marks
+select *,eng+maths+telugu+science+social total,
+(eng+maths+science+social+telugu)/5 average from student;
+
+-- Display student with hall ticket number 101
+select * from student where hno=101;
+
+-- Dislay student who pass in all subjects
+select *,'pass' result from student where
+eng>=35 and telugu>=35 and science>=35 and social>=35 and maths>=35;
+
+-- Display students who fail in one or more subjects
+select *,'fail' result from student where
+eng<35 or telugu<35 or science<35 or social<35 or maths<35;
+
+-- Assign grades based on marks
+select * ,eng+telugu+science+social+maths total,
+(eng+maths+telugu+science+social)/5 average,'pass' result,
+'A+' Grade from student where
+eng>=35 and telugu>=35 and science>=35 and maths>=35 and social>=35 and(eng+telugu+maths+science+social)/5 >=90 ;
+
+-- Inserting more columns into table
+alter table student add(total int,average int ,result varchar(4), grade varchar(2));
+
+-- To show the table columns
+desc student;
+-- Update total column
+update student set total=eng+science+social+maths+telugu;
+select *from student;
+
+update student set average=total/5;
+select*from student;
+
+update student set result='pass' where eng>=35 and telugu>=35 and maths>=35 and science>=35 and social>=35;
+select*from student;
+
+update student set grade=
+case
+	when average>=90 then 'A'
+    when average>=80 then 'B' 
+    when average>=70 then 'C'
+    when average>=60 then 'D'
+    else 'F'
+end;
+
+select*from student;
+
+-- Modify the column name or datatype one to another
+alter table student modify result varchar(5);
+
+-- Drop one column
+alter table student drop grade;
+
+-- Delete one column
+delete from student where hno=103;
+
+
+-- Create a employee table
+create table employee (eno int, ename varchar(20), bs int, dept int, cat varchar(20));
+
+
+-- Inserting the values
+insert into employee values(101,'varsha',93000,10,'manager');
+insert into employee values(102,'vara',90000,10,'sr.manager');
+insert into employee values(103,'likki',85000,10,'jr.manager');
+insert into employee values(104,'pandu',80000,20,'developer');
+insert into employee values(105,'tejj',83000,20,'sr.developer');
+insert into employee values(106,'pradhi',75000,20,'jr.developer');
+insert into employee values(107,'prabhu',70000,30,'program');
+insert into employee values(108,'lasya',65000,30,'sr.program');
+insert into employee values(109,'thanu',63000,30,'jr.program');
+insert into employee values(110,'vyshu',60000,40,'tester');
+insert into employee values(111,'sure',55000,40,'sr.tester');
+insert into employee values(112,'maya',53000,40,'jr.tester');
+
+-- Select commands
+select*from employee;
+select * from employee having dept=10;
+select eno from employee order by eno;
+select eno,ename,bs from employee order by eno desc;
+
+-- Whenever we are using the orderby with specific condition after table use the where or having and followed by order
+select eno,ename,bs from employee where bs>=75000 order by eno;
+select eno,ename,bs from employee having bs>=75000 order by eno;
+
+select dept,cat from employee order by dept;
+
+select dept,cat from employee order by dept,cat;
+
+-- In this case distinct and groupby gives the same output but distinct return unique values in distinct output it return only one unique value but in group by it groups department into one here one value is group
+select distinct dept from employee;
+
+select dept from employee group by dept;
+
+-- Suppose we want two columns to display like dept and category but we are performing one dept groupby it is not work but we give two columns groupby it will work
+-- The database doesn't know which cat value to show for each department if multiple categories exist.That's why it won't work
+select dept,cat from employee group by dept;
+select dept,cat from employee group by dept,cat;
+
+-- Whenever we are using the group by with having it comes after by groupby 
+-- In before we use where in place of having but here it doesn't work
+select dept,bs from employee
+	group by dept,bs having bs>=75000;
+    
+-- Aggregate functions
+
+-- sum of the salary of all employees
+select sum(bs) from employee;
+
+-- sum of salary of all employees with dept wise
+select dept,sum(bs) from employee group by dept;
+
+-- avg of salary of all employess with dept wise
+select dept,avg(bs) from employee group by dept;
+
+-- number of employees in each dept
+select dept,count(*) from employee group by dept;
+
+-- Max salary of all employees in each dept
+select dept,max(bs) from employee group by dept;
+
+-- Min salary of all employee in each dept
+select dept,min(bs) from employee group by dept;
+
+-- Display employess whose dept is 10 or 20 or 40
+select * from employee where dept=10 or dept=20 or dept=40;
+-- or
+select * from employee where dept in(10,20,40);
+select * from employee where cat in('manager','sr.manager');
+
+select * from employee where bs>=75000 and bs<=90000;
+select * from employee where bs between 60000 and 70000;
+
+select * from employee where cat like 'sr%';
+select * from employee where cat like 'sr%er';
+select * from employee where cat like '%';
+select * from employee where cat like '__________';
+
+
+
+use db;
+select * from student;
+select name, if(score<75.25 ,'fail','pass') as result from student;
+
+select name,score,
+case
+	when score>=75.25 then 'A'
+    when score>=50.25 then 'B'
+    when score>=35.25 then 'C'
+    else 'D'
+end as grade
+from student;
+
+use db;
+create table transaction(t_id int primary key auto_increment,name varchar(50),amount int,c_id int unique);
+
+create table customer(c_id int primary key auto_increment,name varchar(50),amount int,foreign key(c_id) references transaction(c_id));
+ 
+insert into transactions values(101,'varsha',100,1),(102,'vara',300,3),(103,'tejj',200,4),(104,'varsha',200,2),(105,'likki',400,5);
+insert into customer values(1,'varsha',100),(2,'varsha',200),(3,'vara',300),(4,'tejj',200),(5,'likki',400);
+
+select * from transactions;
+
+select * from customer;
+
+select customer.c_id,customer.name,customer.amount from customer 
+inner join 
+transactions on customer.c_id=transactions.c_id ;
+
+select customer.c_id,customer.name,customer.amount from customer
+left join
+transactions on customer.c_id=transactions.c_id;
+
+select customer.c_id,customer.name,customer.amount from customer
+right join
+transactions on customer.c_id=transactions.c_id;
+
+INSERT INTO transactions
+VALUES (106,'pandu',500,6);
+
+
+-- Union returns the data with no dupliactes and show that common data in both tables
+-- Union all it returns all data from the both tables with dupliactes
+select customer.name from customer
+union
+select transactions.name from transactions;
+
+select customer.name,customer.c_id from customer
+union
+select transactions.name, transactions.c_id from transactions;
+
+select customer.name from customer
+union all
+select transactions.name from transactions;
+
+SELECT c_id, name, amount FROM customer
+UNION ALL
+SELECT c_id, name, amount FROM transactions;
+
+SELECT c_id, name, amount FROM customer
+UNION 
+SELECT c_id, name, amount FROM transactions;
+
+SELECT *
+FROM customer
+CROSS JOIN transactions;
+
+SELECT customer.name,transactions.t_id
+FROM customer
+CROSS JOIN transactions;
+
+use db;
+create table sales(amount double,s_id int);
+
+insert into sales values(30000,1),(24000,2),(34000,3),(26000,4),(43000,5),(54000,6);
+
+select max(amount) as Maximun_amount from sales;
+
+select min(amount) as Minimun_amount from sales;
+
+select sum(amount) as total_amount from sales;
+
+select avg(amount) as Avg_amount from sales;
+
+select count(*) as No_of_customers from sales;
+
+alter table sales add product_name varchar(50);
+
+update sales set product_name='watch' where s_id=1;
+
+update sales set product_name='tablet' where s_id=2;
+
+update sales set product_name='phone' where s_id=3;
+
+update sales set product_name='smartwatch' where s_id=4;
+
+update sales set product_name='fan' where s_id=5;
+
+update sales set product_name='tv' where s_id=6;
+
+select product_name from sales where amount>(select avg(amount)from sales);
+
+select *from sales where amount in(select amount from sales);
+
+
+
